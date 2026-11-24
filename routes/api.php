@@ -35,6 +35,7 @@ Route::controller(WorkspaceController::class)->middleware('auth:sanctum')->prefi
     Route::get('/{workspace}/view','view');
     Route::post('/{workspace}/update','update');
     Route::delete('/{workspace}/delete','delete');
+    Route::post('{workspace}/logo/upload','uploadLogo');
 });
 
 

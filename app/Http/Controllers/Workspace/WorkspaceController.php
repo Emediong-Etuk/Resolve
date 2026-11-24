@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Workspace;
 use App\Actions\Workspace\CreateWorkspace;
 use App\Actions\Workspace\DeleteWorkspace;
 use App\Actions\Workspace\UpdateWorkspace;
+use App\Actions\Workspace\UploadWorkspaceLogo;
 use App\Actions\Workspace\ViewWorkspace;
 use App\Actions\Workspace\ViewWorkspaces;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateWorkspaceRequest;
 use App\Http\Requests\UpdateWorkspaceRequest;
+use App\Http\Requests\UploadWorkspaceLogoRequest;
 use App\Models\Workspace;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -62,6 +64,15 @@ class WorkspaceController extends Controller
 
         return response()->json([
             'message'=>__('auth.workspace_deleted')
+        ]);
+    }
+
+    public function uploadLogo(Workspace $workspace, UploadWorkspaceLogo $action): JsonResponse
+    {
+        $logo=$action->execute($workspace->id);
+
+        return response()->json([
+            'workspace_logo'=>$logo
         ]);
     }
 }
