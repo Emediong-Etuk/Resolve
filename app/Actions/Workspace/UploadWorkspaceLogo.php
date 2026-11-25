@@ -9,9 +9,9 @@ use RuntimeException;
 
 class UploadWorkspaceLogo
 {
-    public function execute(string $workspaceId):string
+    public function execute(string $workspaceId, Request $request):string
     {
-        $path= request()->file('logo')->storePublicly('workspacelogos','public');
+        $path= $request->file('logo')->storePublicly('workspacelogos','public');
 
         if(!$path) throw new RuntimeException('workspace logo could not be stored');
 

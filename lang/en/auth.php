@@ -23,7 +23,9 @@ return [
     'two_factor_confirmation_message'=>'Two-factor authentication is already enabled.',
     'two_factor_authentication_disabled'=>'Two-factor authentication is disabled',
 
-    'workspace_deleted'=>'workspace has been deleted',
+    'workspace_deleted'=>'Workspace has been deleted',
+    'user_not_found'=>'This user has not been found',
+
     'email_verification'=>[
         'subject'=>'Email Verification',
         'message'=>'Your verification code is :token',
@@ -42,6 +44,11 @@ return [
     'password_reset'=>[
         'subject'=>'Password Reset',
         'message'=>'Your password has been reset successfully',
+    ],
+
+    'send_workspace_invite'=>[
+        'subject'=>'Workspace Invite',
+        'message'=>'Dear :name, you have been invited to :workspace. Click here to accept :url'
     ],
 
 ];

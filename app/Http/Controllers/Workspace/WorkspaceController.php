@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Workspace;
 
 use App\Actions\Workspace\CreateWorkspace;
 use App\Actions\Workspace\DeleteWorkspace;
+use App\Actions\Workspace\InviteTeamMember;
 use App\Actions\Workspace\UpdateWorkspace;
 use App\Actions\Workspace\UploadWorkspaceLogo;
 use App\Actions\Workspace\ViewWorkspace;
 use App\Actions\Workspace\ViewWorkspaces;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateWorkspaceRequest;
+use App\Http\Requests\SendInviteRequest;
 use App\Http\Requests\UpdateWorkspaceRequest;
 use App\Http\Requests\UploadWorkspaceLogoRequest;
 use App\Models\Workspace;
@@ -67,12 +69,21 @@ class WorkspaceController extends Controller
         ]);
     }
 
-    public function uploadLogo(Workspace $workspace, UploadWorkspaceLogo $action): JsonResponse
+    public function uploadLogo(Workspace $workspace, UploadWorkspaceLogo $action, UploadWorkspaceLogoRequest $request): JsonResponse
     {
-        $logo=$action->execute($workspace->id);
+        $logo=$action->execute($workspace->id, $request);
 
         return response()->json([
             'workspace_logo'=>$logo
+        ]);
+    }
+
+    public function inviteTeamMember(InviteTeamMember $action, SendInviteRequest $request, Workspace $workspace): JsonResponse
+    {
+        $sendInvite = $action->execute($request->email,$workspace->id);
+
+        return response()->json([
+            'message'=>$sendInvite
         ]);
     }
 }

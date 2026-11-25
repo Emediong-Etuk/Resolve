@@ -23,7 +23,7 @@ class UploadWorkspaceLogoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'logo'=>['image','max:5120','required']
+            'logo'=>['image','max:5120','required','mimes:png,jpg']
         ];
     }
 }
